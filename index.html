@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biblioteca José Hernández de Ferré</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Biblioteca José Hernández de Ferré: lectura, cultura y comunidad en el corazón del pueblo." />
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --bg-alt: #ffffff;
+      --accent: #3f7650;
+      --accent-soft: #e0efe6;
+      --text-main: #1f1f1f;
+      --text-soft: #6f6f6f;
+      --border-subtle: #e1ded8;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --transition-fast: 180ms ease-out;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top left, #fdfaf5 0, #f5f3ee 38%, #f0ede6 100%);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout base */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 18px 32px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(245, 243, 238, 0.95), rgba(245, 243, 238, 0.7));
+      border-bottom: 1px solid rgba(225, 222, 216, 0.7);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 10px 18px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 40% 60% 55% 45%;
+      background: conic-gradient(from 220deg, #3f7650, #6fa77a, #9abf9f, #3f7650);
+      position: relative;
+      box-shadow: 0 8px 18px rgba(23, 37, 84, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      width: 90%;
+      height: 90%;
+      border-radius: 40% 60% 58% 42%;
+      border: 2px solid rgba(245, 243, 238, 0.65);
+      position: absolute;
+    }
+
+    .brand-letter {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #fdfaf5;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--text-soft);
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      background: rgba(225, 222, 216, 0.75);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 118, 80, 0.2);
+      background: rgba(63, 118, 80, 0.05);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #2f5b3a;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.1fr);
+      gap: 32px;
+      padding: 28px 0 10px;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 40px);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(120deg, #3f7650, #6fa77a);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      max-width: 36rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+      text-decoration: none;
+      outline-offset: 3px;
+      outline-color: rgba(63, 118, 80, 0.35);
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #6fa77a 0, #3f7650 50%, #345f42 100%);
+      color: #fdfbf8;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.22);
+      background: radial-gradient(circle at top left, #79b184 0, #3b7f55 55%, #2f533b 100%);
+    }
+
+    .btn-ghost {
+      background: rgba(245, 243, 238, 0.75);
+      border: 1px solid rgba(97, 97, 97, 0.2);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(225, 222, 216, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      font-size: 16px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(225, 222, 216, 0.9);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, #ffffff 0, #f5f3ee 55%, #e0efe6 100%);
+      border: 1px solid rgba(225, 222, 216, 0.9);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .hero-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hero-card-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .hero-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 118, 80, 0.2);
+      background: rgba(63, 118, 80, 0.06);
+      color: #2f5b3a;
+    }
+
+    .hero-shelves {
+      margin-top: 6px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .book {
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(63, 118, 80, 0.12), rgba(63, 118, 80, 0.32));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book:nth-child(3),
+    .book:nth-child(7) {
+      background: linear-gradient(180deg, rgba(111, 167, 122, 0.12), rgba(63, 118, 80, 0.24));
+    }
+
+    .book::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      opacity: 0.8;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .badge-soft {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(225, 222, 216, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #3f7650;
+    }
+
+    .hero-floating {
+      position: absolute;
+      bottom: -10px;
+      right: 6px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(247, 246, 242, 0.92);
+      border: 1px solid rgba(225, 222, 216, 0.9);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-floating span {
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* Secciones genéricas */
+    section {
+      padding: 26px 0 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .section-title span {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 32rem;
+    }
+
+    .section-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(97, 97, 97, 0.18);
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-soft);
+    }
+
+    /* Tarjetas */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 14px 14px 13px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+      border-color: rgba(63, 118, 80, 0.25);
+      background: #ffffff;
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    /* Catálogo destacado */
+    .catalog-cta {
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(63, 118, 80, 0.22);
+      background: radial-gradient(circle at top left, rgba(63, 118, 80, 0.08), #fdfbf8 45%, #f3f0ea 100%);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      justify-content: space-between;
+    }
+
+    .catalog-text {
+      max-width: 440px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    .catalog-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .catalog-extra {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    /* Ubicación y horarios */
+    .info-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .info-item {
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .info-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 13px;
+    }
+
+    .map-placeholder {
+      border-radius: var(--radius-xl);
+      border: 1px dashed rgba(97, 97, 97, 0.3);
+      background: linear-gradient(135deg, rgba(63, 118, 80, 0.03), rgba(225, 222, 216, 0.25));
+      padding: 18px 16px;
+      font-size: 13px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .map-placeholder strong {
+      color: var(--text-main);
+    }
+
+    /* Sección Asociate */
+    .membership {
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      background: linear-gradient(160deg, #ffffff 0, #f5f3ee 50%, #e0efe6 100%);
+      border: 1px solid rgba(225, 222, 216, 0.9);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .membership h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .membership p {
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 420px;
+    }
+
+    .membership-list {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-soft);
+      list-style: none;
+    }
+
+    .membership-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .membership-list span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(63, 118, 80, 0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--accent);
+      background: rgba(63, 118, 80, 0.04);
+    }
+
+    .membership-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .membership-note {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 22px;
+      padding: 14px 0 6px;
+      border-top: 1px solid rgba(193, 189, 180, 0.9);
+      background: rgba(245, 243, 238, 0.95);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(193, 189, 180, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      background: rgba(225, 222, 216, 0.9);
+      transform: translateY(-1px);
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .membership {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      .page {
+        padding-inline: 14px;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .info-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .catalog-cta {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a href="#top" class="brand">
+        <div class="brand-mark">
+          <div class="brand-letter">B</div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Biblioteca José Hernández</div>
+          <div class="brand-subtitle">Ferré · Buenos Aires</div>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#actividades">Actividades</a>
+        <a href="#edutec">EDUTEC</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#asociate">Asociate</a>
+        <span class="chip">Espacio de lectura y comunidad</span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="page">
+
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            Biblioteca pública · Ferré
+          </div>
+          <h1 id="hero-title" class="hero-title">
+            Un lugar tranquilo para leer, aprender
+            <span class="hero-highlight">y encontrarse con otros.</span>
+          </h1>
+          <p class="hero-text">
+            La Biblioteca José Hernández de Ferré es un espacio abierto a todo el pueblo:
+            libros, estudio, tecnología, talleres y actividades culturales para todas las edades.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#catalogo" class="btn btn-primary">
+              <span class="btn-icon">📚</span>
+              Explorar catálogo
+            </a>
+            <a href="#asociate" class="btn btn-ghost">
+              <span class="btn-icon">🤝</span>
+              Hacete socio
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <span>📖</span> +7.000 libros físicos
+            </div>
+            <div class="hero-meta-item">
+              <span>👨‍👩‍👧‍👦</span> Actividades para todas las edades
+            </div>
+            <div class="hero-meta-item">
+              <span>💻</span> Espacio de estudio y tecnología
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div>
+                <div class="hero-card-title">
+                  Estantes siempre vivos
+                  <span class="hero-card-subtitle">
+                    Lectura, estudio, talleres y comunidad.
+                  </span>
+                </div>
+              </div>
+              <div class="hero-pill">Ferré · Biblioteca Pública</div>
+            </div>
+
+            <div class="hero-shelves">
+              <div class="book"></div>
+              <div class="book"></div>
+              <div class="book"></div>
+              <div class="book"></div>
+              <div class="book"></div>
+              <div class="book"></div>
+              <div class="book"></div>
+              <div class="book"></div>
+            </div>
+
+            <div class="hero-card-footer">
+              <div class="badge-soft">
+                <span class="badge-dot"></span>
+                Abierto a toda la comunidad
+              </div>
+              <div>Lectura silenciosa · Talleres · Cowork &amp; Learning Lab</div>
+            </div>
+
+            <div class="hero-floating">
+              Hoy en la biblioteca: <span>&nbsp;gente leyendo y aprendiendo.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sobre la biblioteca -->
+      <section aria-labelledby="sobre-title">
+        <div class="section-header">
+          <div class="section-title">
+            Sobre la biblioteca
+            <span id="sobre-title">Lectura, cultura y tecnología en el corazón del pueblo.</span>
+          </div>
+          <div class="section-subtitle">
+            Somos un espacio de puertas abiertas donde conviven los libros en papel,
+            el acceso a la información, las nuevas tecnologías y los encuentros entre vecinos.
+          </div>
+        </div>
+
+        <div class="grid-4 grid-3">
+          <div class="card">
+            <div class="card-label">Colección</div>
+            <div class="card-title">Miles de libros para descubrir</div>
+            <div class="card-text">
+              Literatura, historia, ciencia, infantiles, cómics y más, con nuevos títulos que se suman durante el año.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Comunidad</div>
+            <div class="card-title">Un punto de encuentro</div>
+            <div class="card-text">
+              Espacios para estudiar, leer tranquilo, trabajar en grupo y participar de actividades culturales.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Tecnología</div>
+            <div class="card-title">Herramientas digitales</div>
+            <div class="card-text">
+              Acompañamos a la comunidad en el uso de tecnologías, dispositivos, internet y herramientas digitales.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Catálogo online -->
+      <section id="catalogo" aria-labelledby="catalogo-title">
+        <div class="section-header">
+          <div class="section-title">
+            Catálogo
+            <span id="catalogo-title">Buscá tus próximos libros favoritos.</span>
+          </div>
+          <div class="section-pill">Próximamente disponible en línea</div>
+        </div>
+
+        <div class="catalog-cta">
+          <div class="catalog-text">
+            <div class="catalog-title">Catálogo en línea de la Biblioteca José Hernández</div>
+            Consultá la colección completa, buscá por autor, título o tema y revisá la disponibilidad antes de acercarte.
+            <div class="catalog-extra">
+              Podrás reservar ejemplares, ver recomendaciones y descubrir novedades desde cualquier dispositivo.
+            </div>
+          </div>
+          <div>
+            <a href="#" class="btn btn-primary" aria-disabled="true" style="opacity: 0.75; cursor: default;">
+              Próximamente online
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Actividades y talleres -->
+      <section id="actividades" aria-labelledby="actividades-title">
+        <div class="section-header">
+          <div class="section-title">
+            Actividades &amp; talleres
+            <span id="actividades-title">Aprender y compartir más allá de los libros.</span>
+          </div>
+          <div class="section-subtitle">
+            Organizamos propuestas para chicos, jóvenes y adultos: lectura, tecnología, formación docente y espacios de encuentro.
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-label">Para chicos y familias</div>
+            <div class="card-title">Cuentacuentos y actividades infantiles</div>
+            <div class="card-text">
+              Encuentros de lectura, juegos y propuestas creativas para que los chicos se acerquen a los libros desde pequeños.
+            </div>
+            <div class="card-meta">Ideal para nivel inicial y primaria.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-label">Jóvenes &amp; estudiantes</div>
+            <div class="card-title">Espacio de estudio y apoyo</div>
+            <div class="card-text">
+              Un lugar tranquilo para estudiar, hacer trabajos prácticos, usar internet y compartir proyectos con otros.
+            </div>
+            <div class="card-meta">Cowork &amp; Learning Lab.</div>
+          </div>
+
+          <div class="card" id="edutec">
+            <div class="card-label">Docentes &amp; adultos</div>
+            <div class="card-title">EDUTEC: Educación &amp; tecnología</div>
+            <div class="card-text">
+              Talleres sobre inteligencia artificial, herramientas digitales, redes sociales, seguridad en internet y más.
+            </div>
+            <div class="card-meta">Para instituciones educativas y educadores de la zona.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ubicación y horarios -->
+      <section id="ubicacion" aria-labelledby="ubicacion-title">
+        <div class="section-header">
+          <div class="section-title">
+            Ubicación &amp; horarios
+            <span id="ubicacion-title">Te esperamos en la biblioteca.</span>
+          </div>
+        </div>
+
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-label">Dirección</div>
+            <div class="info-value">
+              Biblioteca José Hernández · Ferré, Partido de General Arenales, Buenos Aires.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Horarios</div>
+            <div class="info-value">
+              Lunes a viernes · 8:00 a 12:00 y 16:00 a 19:00  
+              <br />Consultar redes por actualizaciones.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Contacto</div>
+            <div class="info-value">
+              WhatsApp (próximamente) · Redes sociales de la biblioteca.  
+              <br />También podés acercarte en persona en los horarios de atención.
+            </div>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <div>
+            <strong>Mapa de la biblioteca</strong><br />
+            Próximamente vas a poder ver el mapa interactivo de la biblioteca aquí mismo.
+          </div>
+          <div>
+            <span style="font-size: 11px;">Mientras tanto, podés buscarnos en Google Maps como “Biblioteca José Hernández Ferré”.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Asociate -->
+      <section id="asociate" aria-labelledby="asociate-title">
+        <div class="section-header">
+          <div class="section-title">
+            Asociate a la biblioteca
+            <span id="asociate-title">Tu aporte sostiene este espacio para todo el pueblo.</span>
+          </div>
+        </div>
+
+        <div class="membership">
+          <div>
+            <h3>Hacete socio de la Biblioteca José Hernández</h3>
+            <p>
+              Ser socio es una forma simple de apoyar la lectura, la educación y la cultura en Ferré.
+              Con tu cuota ayudás a mantener y hacer crecer este espacio comunitario.
+            </p>
+            <ul class="membership-list">
+              <li><span>✓</span> Préstamo de libros y materiales.</li>
+              <li><span>✓</span> Acceso a espacios de estudio y actividades.</li>
+              <li><span>✓</span> Prioridad en talleres y propuestas especiales.</li>
+              <li><span>✓</span> Participación en la construcción de la biblioteca del futuro.</li>
+            </ul>
+          </div>
+          <div class="membership-actions">
+            <a href="#" class="btn btn-primary" aria-disabled="true" style="opacity: 0.8; cursor: default;">
+              Formulario de asociación (próximamente)
+            </a>
+            <div class="membership-note">
+              Por ahora podés acercarte personalmente a la biblioteca en los horarios de atención
+              para asociarte o hacer tu aporte voluntario.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        © <span id="year"></span> Biblioteca José Hernández · Ferré, Buenos Aires.
+        <br />Un espacio abierto de lectura, cultura y comunidad.
+      </div>
+      <div class="footer-links">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#actividades">Actividades</a>
+        <a href="#asociate">Asociate</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico en el footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
