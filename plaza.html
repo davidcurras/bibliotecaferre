@@ -2,11 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biblioteca José Hernández</title>
+  <title>Plaza de Ferré – Biblioteca José Hernández</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Favicon (mismas rutas que el sitio principal) -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" href="/assets/favicon-32.png" />
+
+  <!-- Meta básica -->
+  <meta name="description" content="Cuenta regresiva, historia y recorrido virtual de la Plaza de Ferré, presentada por la Biblioteca Popular José Hernández." />
+
+  <!-- Open Graph (Facebook, WhatsApp, etc.) -->
+  <meta property="og:title" content="Plaza de Ferré – Biblioteca José Hernández" />
+  <meta property="og:description" content="Seguí la cuenta regresiva y conocé la historia y el recorrido virtual de la plaza de Ferré." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bibliotecaferre.com.ar/plaza" />
+  <meta property="og:image" content="https://bibliotecaferre.ar/assets/background.png" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Plaza de Ferré – Biblioteca José Hernández" />
+  <meta name="twitter:description" content="Cuenta regresiva, historia y recorrido virtual de la plaza de Ferré." />
+  <meta name="twitter:image" content="https://bibliotecaferre.ar/assets/background.png" />
+
+  <!-- Tailwind CSS CDN (mismo config que la página principal) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -58,94 +78,374 @@
       -moz-osx-font-smoothing: grayscale;
       background-color: #f5f4f2;
     }
+
+    .embed-16by9 {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+    }
+    .embed-16by9 iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+  <div class="min-h-screen flex flex-col bg-[#f5f4f2]">
 
-    <div
-      id="home"
-      class="relative min-h-screen flex flex-col w-full bg-cover bg-top md:bg-center bg-no-repeat"
-      style="background-image: url('assets/background.png');"
-    >
-    <!-- Capa suave sobre la foto -->
-    <div class="absolute inset-0 bg-white/20 md:bg-white/60 pointer-events-none"></div>
-
-    <!-- NAVBAR -->
-    <header class="relative z-20 w-full flex justify-center pt-8 pb-4">
-      <div class="w-11/12 max-w-5xl border-t-2 border-black pt-4">
-        <nav>
-          <ul class="flex flex-wrap justify-center gap-10 md:gap-14 text-center">
-            <li>
-              <a
-                href="#catalog"
-                class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
-              >CATÁLOGO</a>
-            </li>
-            <li>
-              <a
-                href="#hours"
-                class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
-              >HORARIOS</a>
-            </li>
-            <li>
-              <a
-                href="#events"
-                class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
-              >AGENDA</a>
-            </li>
-            <li>
-              <a
-                href="/plaza"
-                class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
-              >PLAZA FERRÉ</a>
-            </li>
-            <li>
-              <a
-                href="#about"
-                class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
-              >NOSOTROS</a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
-              >CONTACTO</a>
-            </li>
-          </ul>
-        </nav>
+    <!-- HEADER: estilo alineado al sitio principal -->
+    <header class="w-full flex justify-center pt-8 pb-4 bg-transparent">
+      <div class="w-11/12 max-w-5xl border-t-2 border-black pt-4 flex items-center justify-between gap-4">
+        <a href="https://bibliotecaferre.ar" class="flex items-center gap-3">
+          <img
+            src="/assets/logo-biblioteca.svg"
+            alt="Logo de la Biblioteca José Hernández de Ferré"
+            class="h-10 w-auto"
+            loading="lazy"
+          />
+          <span class="text-[11px] md:text-xs text-neutral-700">
+            Biblioteca Popular José Hernández · Ferré
+          </span>
+        </a>
+        <a
+          href="https://bibliotecaferre.ar"
+          class="hidden md:inline-flex font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
+        >
+          VOLVER A LA BIBLIOTECA
+        </a>
       </div>
     </header>
 
-    <!-- HERO -->
-    <main class="relative z-20 flex-1 flex items-center justify-center px-4 py-10 md:py-16">
-      <section class="max-w-3xl w-full text-center animate-fade-in-up">
-        <h1 class="font-serif text-black leading-tight tracking-wide mb-8">
-          <span class="block text-4xl md:text-6xl font-bold mb-2 md:mb-4">
-            PLAZA
-          </span>
-          <span class="block text-3xl md:text-5xl font-bold">
-            BIBILIOTECA JOSÉ HERNÁNDEZ
-          </span>
-        </h1>
+    <!-- MAIN -->
+    <main class="flex-1 px-6 pb-10 sm:pb-12 flex items-center justify-center">
+      <div class="w-full max-w-5xl space-y-4 md:space-y-6">
+
+        <!-- SECCIÓN PRE-EVENTO: COUNTDOWN -->
+        <section
+          id="pre-event"
+          class="bg-white border border-gray-100 rounded-3xl px-6 py-8 sm:px-10 sm:py-10 shadow-sm"
+        >
+          <p class="inline-flex items-center gap-2 text-xs font-medium bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full mb-5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Cuenta regresiva – Inauguración de la plaza
+          </p>
+
+          <header class="mb-7 text-center">
+            <h1 class="font-serif text-3xl sm:text-4xl font-semibold leading-tight mb-3 tracking-wide">
+              Plaza de Ferré · Cuenta regresiva
+            </h1>
+            <p class="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+              El <strong>7 de diciembre de 2025 a las 21:00&nbsp;hs (hora Argentina)</strong>
+              se inaugura la nueva plaza de Ferré. Cuando esta cuenta regresiva llegue a cero,
+              vas a poder ver su <strong>historia</strong>, <strong>fotos</strong> y un
+              <strong>recorrido virtual</strong> desde esta misma página.
+            </p>
+          </header>
+
+          <!-- Countdown -->
+          <div class="flex flex-col items-center gap-5">
+            <div
+              id="countdown"
+              class="inline-flex items-center justify-center gap-4 sm:gap-6 text-center"
+              aria-label="Cuenta regresiva en días, horas, minutos y segundos"
+            >
+              <div class="flex flex-col">
+                <span
+                  id="cd-days"
+                  class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight"
+                >
+                  --
+                </span>
+                <span class="text-xs sm:text-sm text-gray-500">
+                  días
+                </span>
+              </div>
+              <span class="text-3xl sm:text-4xl text-gray-300">·</span>
+              <div class="flex flex-col">
+                <span
+                  id="cd-hours"
+                  class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight"
+                >
+                  --
+                </span>
+                <span class="text-xs sm:text-sm text-gray-500">
+                  horas
+                </span>
+              </div>
+              <span class="text-3xl sm:text-4xl text-gray-300">·</span>
+              <div class="flex flex-col">
+                <span
+                  id="cd-minutes"
+                  class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight"
+                >
+                  --
+                </span>
+                <span class="text-xs sm:text-sm text-gray-500">
+                  minutos
+                </span>
+              </div>
+              <span class="text-3xl sm:text-4xl text-gray-300">·</span>
+              <div class="flex flex-col">
+                <span
+                  id="cd-seconds"
+                  class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight"
+                >
+                  --
+                </span>
+                <span class="text-xs sm:text-sm text-gray-500">
+                  segundos
+                </span>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-gray-500 max-w-md text-center">
+              El contenido de la plaza se va a desbloquear automáticamente cuando la cuenta llegue a cero.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECCIÓN POST-EVENTO: CONTENIDO PLAZA (OCULTO HASTA QUE TERMINE EL COUNTDOWN) -->
+        <section
+          id="post-event"
+          class="hidden bg-white border border-gray-100 rounded-3xl px-6 py-8 sm:px-10 sm:py-10 shadow-sm"
+        >
+          <header class="mb-7 text-center md:text-left">
+            <p class="inline-flex items-center gap-2 text-xs font-medium bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full mb-4">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Contenido desbloqueado – Plaza de Ferré
+            </p>
+            <h1 class="font-serif text-3xl sm:text-4xl font-semibold leading-tight mb-3 tracking-wide">
+              Plaza de Ferré · Historia y recorrido
+            </h1>
+            <p class="text-sm sm:text-base text-gray-600 max-w-2xl">
+              La plaza es el punto de encuentro de Ferré. Este espacio renovado celebra nuestra
+              historia, nuestra comunidad y el vínculo entre generaciones.
+            </p>
+          </header>
+
+          <!-- Historia -->
+          <section class="mb-8">
+            <h2 class="font-serif text-lg sm:text-xl font-semibold mb-2">
+              La plaza y el pueblo
+            </h2>
+            <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
+              Desde sus primeros años, la plaza fue el escenario natural de las fiestas del pueblo,
+              los actos escolares y los encuentros familiares de cada fin de semana. Entre árboles,
+              bancos y juegos, se fueron construyendo recuerdos que hoy forman parte de la memoria
+              colectiva de Ferré.
+            </p>
+            <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
+              La renovación busca honrar esa historia, sumando más espacios verdes, accesibilidad,
+              iluminación y áreas pensadas para niñas, niños, jóvenes y personas mayores. Un lugar
+              simple, abierto y vivo, al servicio de la comunidad.
+            </p>
+          </section>
+
+          <!-- Fotos -->
+          <section class="mb-8">
+            <h2 class="font-serif text-lg sm:text-xl font-semibold mb-3">
+              Galería de imágenes
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-600 mb-3">
+              Una mirada a la plaza en distintas etapas: antes, durante y después de la renovación.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <!-- Ajustar rutas de imágenes reales -->
+              <figure class="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
+                <img
+                  src="/assets/plaza-antes.jpg"
+                  alt="Vista de la plaza de Ferré antes de la renovación"
+                  class="w-full h-56 object-cover"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
+                <img
+                  src="/assets/plaza-despues.jpg"
+                  alt="Vista de la plaza de Ferré luego de la renovación"
+                  class="w-full h-56 object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+          </section>
+
+          <!-- Recorrido virtual / modelo 3D -->
+          <section class="mb-8">
+            <h2 class="font-serif text-lg sm:text-xl font-semibold mb-3">
+              Recorrido virtual
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-600 mb-4">
+              Explorá la plaza en 3D desde tu dispositivo. Podés moverte libremente, acercarte a los
+              sectores que más te interesen e imaginar nuevas formas de habitar este espacio.
+            </p>
+
+            <div class="rounded-2xl overflow-hidden border border-gray-100 bg-gray-50">
+              <div class="embed-16by9">
+                <iframe
+                  src="https://planner5d.onelink.me/stDT/xxkao91o"
+                  title="Recorrido 3D de la plaza de Ferré"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </section>
+
+          <!-- Compartir -->
+          <section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p class="text-xs sm:text-sm text-gray-600 max-w-md">
+              Si esta plaza también es parte de tu historia, compartí esta página con tu familia y amigos.
+            </p>
+            <button
+              id="shareButton"
+              type="button"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-emerald-500 text-white text-sm font-medium shadow-sm hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition"
+            >
+              Compartir esta página
+            </button>
+          </section>
+        </section>
+      </div>
     </main>
+
+    <!-- FOOTER (igual que el de la biblioteca) -->
+    <footer class="bg-white border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6 py-8 md:py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+          <!-- Info y derechos -->
+          <div class="text-center md:text-left">
+            <p class="text-[10px] md:text-xs font-sans text-gray-500 tracking-[0.15em] uppercase">
+              &copy; <span id="year"></span> Biblioteca Popular José Hernández · Ferré
+            </p>
+            <p class="mt-2 text-[11px] md:text-xs text-gray-400">
+              Espacio comunitario de lectura, cultura y tecnología para toda la comunidad.
+            </p>
+          </div>
+
+          <!-- Redes sociales y WhatsApp -->
+          <div class="flex flex-col items-center md:items-end gap-3">
+            <div class="flex items-center gap-4 text-sm text-gray-600">
+              <a
+                href="https://www.instagram.com/bibliotecaferre/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-black transition-colors"
+              >
+                📷 Instagram
+              </a>
+              <a
+                href="https://www.facebook.com/people/Biblioteca-Ferre/61557865380803/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-black transition-colors"
+              >
+                👍 Facebook
+              </a>
+            </div>
+
+            <a
+              href="https://wa.me/542353498294?text=Hola%20%F0%9F%91%8B%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%20la%20Biblioteca%20Jos%C3%A9%20Hern%C3%A1ndez."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white text-xs md:text-sm font-medium shadow-sm transition-colors"
+            >
+              <span>💬</span>
+              <span>Escribir por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <!-- FOOTER -->
-  <footer
-    class="bg-white py-8 text-center text-[10px] md:text-xs font-sans text-gray-400 tracking-[0.25em] border-t border-gray-100"
-  >
-    &copy; <span id="year"></span> BIBLIOTECA JOSÉ HERNÁNDEZ
-  </footer>
-
-  <!-- JS sencillo: año dinámico + acción del botón -->
   <script>
     // Año dinámico en el footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Acción placeholder del botón "Buscar libro"
-    document.getElementById('searchButton').addEventListener('click', function () {
-      alert('Próximamente podrás buscar libros en línea desde esta página.');
-    });
+    // Fecha objetivo: 7 de diciembre de 2025, 21:00 hs (hora Argentina, UTC-3)
+    const targetDate = new Date('2025-12-07T21:00:00-03:00');
+
+    const preEventSection = document.getElementById('pre-event');
+    const postEventSection = document.getElementById('post-event');
+
+    const daysEl = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minutesEl = document.getElementById('cd-minutes');
+    const secondsEl = document.getElementById('cd-seconds');
+
+    let countdownInterval = null;
+
+    function showPostEvent() {
+      if (preEventSection) preEventSection.classList.add('hidden');
+      if (postEventSection) postEventSection.classList.remove('hidden');
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance <= 0) {
+        showPostEvent();
+        if (countdownInterval) clearInterval(countdownInterval);
+        return;
+      }
+
+      const totalSeconds = Math.floor(distance / 1000);
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    (function initCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance <= 0) {
+        showPostEvent();
+      } else {
+        updateCountdown();
+        countdownInterval = setInterval(updateCountdown, 1000);
+      }
+    })();
+
+    // Compartir página (Web Share API + fallback a WhatsApp)
+    const shareButton = document.getElementById('shareButton');
+    if (shareButton) {
+      shareButton.addEventListener('click', async () => {
+        const shareUrl = window.location.href;
+        const shareText =
+          'Conocé la historia y el recorrido virtual de la Plaza de Ferré desde la Biblioteca José Hernández.';
+
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'Plaza de Ferré – Biblioteca José Hernández',
+              text: shareText,
+              url: shareUrl,
+            });
+          } catch (err) {
+            // usuario canceló o error
+          }
+        } else {
+          const urlEncoded = encodeURIComponent(shareUrl);
+          const textEncoded = encodeURIComponent(shareText);
+          const whatsappUrl =
+            'https://wa.me/?text=' + textEncoded + '%20' + urlEncoded;
+          window.open(whatsappUrl, '_blank');
+        }
+      });
+    }
   </script>
 </body>
 </html>

@@ -2,9 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Biblioteca José Hernández</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" href="assets/favicon-32.png" />
+
+  <!-- Meta básica -->
+  <meta name="description" content="Biblioteca Popular José Hernández de Ferré. Espacio comunitario de lectura, aprendizaje y actividades culturales para todas las edades." />
+
+  <!-- Open Graph (Facebook, WhatsApp, etc.) -->
+  <meta property="og:title" content="Biblioteca José Hernández - Ferré" />
+  <meta property="og:description" content="Conocé la Biblioteca Popular José Hernández de Ferré: lectura, cultura y comunidad en un mismo lugar." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bibliotecaferre.ar/" />
+  <meta property="og:image" content="https://bibliotecaferre.ar/assets/background.png" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Biblioteca José Hernández - Ferré" />
+  <meta name="twitter:description" content="Conocé la Biblioteca Popular José Hernández de Ferré: lectura, cultura y comunidad en un mismo lugar." />
+  <meta name="twitter:image" content="https://bibliotecaferre.ar/assets/background.png" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -62,11 +82,12 @@
 </head>
 <body class="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
 
-    <div
-      id="home"
-      class="relative min-h-screen flex flex-col w-full bg-cover bg-top md:bg-center bg-no-repeat"
-      style="background-image: url('assets/background.png');"
-    >
+  <!-- HOME: NAV + HERO sobre imagen de fondo -->
+  <div
+    id="home"
+    class="relative min-h-screen flex flex-col w-full bg-cover bg-top md:bg-center bg-no-repeat"
+    style="background-image: url('assets/background.png');"
+  >
     <!-- Capa suave sobre la foto -->
     <div class="absolute inset-0 bg-white/20 md:bg-white/60 pointer-events-none"></div>
 
@@ -74,7 +95,7 @@
     <header class="relative z-20 w-full flex justify-center pt-8 pb-4">
       <div class="w-11/12 max-w-5xl border-t-2 border-black pt-4">
         <nav>
-          <ul class="flex flex-wrap justify-center gap-10 md:gap-14 text-center">
+          <ul class="flex flex-wrap justify-center gap-8 md:gap-14 text-center">
             <li>
               <a
                 href="#catalog"
@@ -95,7 +116,7 @@
             </li>
             <li>
               <a
-                href="/plaza"
+                href="#plaza"
                 class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.28em] text-black hover:text-neutral-500 transition-colors uppercase"
               >PLAZA FERRÉ</a>
             </li>
@@ -198,7 +219,7 @@
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: PLAZA FERRÉ -->
+  <!-- PLAZA FERRÉ -->
   <section
     id="plaza"
     class="min-h-[50vh] flex flex-col items-center justify-center py-20 px-4 bg-[#faf9f7]"
@@ -249,7 +270,7 @@
       <h2 class="font-serif text-2xl md:text-3xl mb-8 tracking-wide text-black">
         CONTACTO
       </h2>
-      <div class="h-px w-20 bg-gray-300 mx-auto mb-8"></div>
+    <div class="h-px w-20 bg-gray-300 mx-auto mb-8"></div>
       <p class="font-sans text-sm md:text-base text-gray-600 font-light leading-relaxed">
         Av. 9 de Julio 123, Ferré, Buenos Aires, Argentina
       </p>
@@ -259,11 +280,55 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer
-    class="bg-white py-8 text-center text-[10px] md:text-xs font-sans text-gray-400 tracking-[0.25em] border-t border-gray-100"
-  >
-    &copy; <span id="year"></span> BIBLIOTECA JOSÉ HERNÁNDEZ
+  <!-- FOOTER MEJORADO -->
+  <footer class="bg-white border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-8 md:py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <!-- Info y derechos -->
+        <div class="text-center md:text-left">
+          <p class="text-[10px] md:text-xs font-sans text-gray-500 tracking-[0.15em] uppercase">
+            &copy; <span id="year"></span> Biblioteca Popular José Hernández · Ferré
+          </p>
+          <p class="mt-2 text-[11px] md:text-xs text-gray-400">
+            Espacio comunitario de lectura, cultura y tecnología para toda la comunidad.
+          </p>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="flex flex-col items-center md:items-end gap-3">
+          <div class="flex items-center gap-4 text-sm text-gray-600">
+            <a
+              href="https://www.instagram.com/bibliotecaferre/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-black transition-colors"
+            >
+              📷 Instagram
+            </a>
+            <a
+              href="https://www.facebook.com/people/Biblioteca-Ferre/61557865380803/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-black transition-colors"
+            >
+              👍 Facebook
+            </a>
+          </div>
+
+          <!-- Botón WhatsApp -->
+          <a
+            href="https://wa.me/542353498294?text=Hola%20%F0%9F%91%8B%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%20la%20Biblioteca%20Jos%C3%A9%20Hern%C3%A1ndez."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white text-xs md:text-sm font-medium shadow-sm transition-colors"
+          >
+            <span>💬</span>
+            <span>Escribir por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <!-- JS sencillo: año dinámico + acción del botón -->
