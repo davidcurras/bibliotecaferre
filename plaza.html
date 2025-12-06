@@ -6,8 +6,8 @@
   <title>Plaza de Ferré – Biblioteca José Hernández</title>
 
   <!-- Favicon (mismas rutas que el sitio principal) -->
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-  <link rel="icon" type="image/png" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+  <link rel="icon" type="image/png" href="./assets/favicon-32.png" />
 
   <!-- Meta básica -->
   <meta name="description" content="Cuenta regresiva, historia y recorrido virtual de la Plaza de Ferré, presentada por la Biblioteca Popular José Hernández." />
@@ -62,6 +62,13 @@
     rel="stylesheet"
   >
 
+  <!-- Iconos (Font Awesome Free) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    referrerpolicy="no-referrer"
+  />
+
   <style>
     * {
       box-sizing: border-box;
@@ -96,12 +103,12 @@
 <body class="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
   <div class="min-h-screen flex flex-col bg-[#f5f4f2]">
 
-    <!-- HEADER: estilo alineado al sitio principal -->
+    <!-- HEADER: alineado al sitio principal -->
     <header class="w-full flex justify-center pt-8 pb-4 bg-transparent">
       <div class="w-11/12 max-w-5xl border-t-2 border-black pt-4 flex items-center justify-between gap-4">
         <a href="https://bibliotecaferre.com.ar" class="flex items-center gap-3">
           <img
-            src="/assets/logo-bjh.png"
+            src="./assets/logo-bjh.png"
             alt="Logo de la Biblioteca José Hernández de Ferré"
             class="h-10 w-auto"
             loading="lazy"
@@ -123,7 +130,7 @@
     <main class="flex-1 px-6 pb-10 sm:pb-12 flex items-center justify-center">
       <div class="w-full max-w-5xl space-y-4 md:space-y-6">
 
-        <!-- SECCIÓN PRE-EVENTO: COUNTDOWN -->
+        <!-- PRE-EVENTO: COUNTDOWN -->
         <section
           id="pre-event"
           class="bg-white border border-gray-100 rounded-3xl px-6 py-8 sm:px-10 sm:py-10 shadow-sm"
@@ -207,7 +214,7 @@
           </div>
         </section>
 
-        <!-- SECCIÓN POST-EVENTO: CONTENIDO PLAZA (OCULTO HASTA QUE TERMINE EL COUNTDOWN) -->
+        <!-- POST-EVENTO: CONTENIDO PLAZA -->
         <section
           id="post-event"
           class="hidden bg-white border border-gray-100 rounded-3xl px-6 py-8 sm:px-10 sm:py-10 shadow-sm"
@@ -256,7 +263,7 @@
               <!-- Ajustar rutas de imágenes reales -->
               <figure class="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
                 <img
-                  src="/assets/plaza-antes.jpg"
+                  src="./assets/plaza-antes.jpg"
                   alt="Vista de la plaza de Ferré antes de la renovación"
                   class="w-full h-56 object-cover"
                   loading="lazy"
@@ -264,7 +271,7 @@
               </figure>
               <figure class="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
                 <img
-                  src="/assets/plaza-despues.jpg"
+                  src="./assets/plaza-despues.jpg"
                   alt="Vista de la plaza de Ferré luego de la renovación"
                   class="w-full h-56 object-cover"
                   loading="lazy"
@@ -312,53 +319,52 @@
       </div>
     </main>
 
-    <!-- FOOTER (igual que el de la biblioteca) -->
-    <footer class="bg-white border-t border-gray-100">
-      <div class="max-w-5xl mx-auto px-6 py-8 md:py-10">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+    <!-- FOOTER estilo "Radium Rocket" pero versión biblioteca -->
+    <footer class="bg-transparent pb-8 px-6">
+      <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 text-center">
+        <!-- Logo centrado -->
+        <img
+          src="./assets/logo-bjh.png"
+          alt="Logo de la Biblioteca José Hernández de Ferré"
+          class="h-10 w-auto"
+          loading="lazy"
+        />
 
-          <!-- Info y derechos -->
-          <div class="text-center md:text-left">
-            <p class="text-[10px] md:text-xs font-sans text-gray-500 tracking-[0.15em] uppercase">
-              &copy; <span id="year"></span> Biblioteca Popular José Hernández · Ferré
-            </p>
-            <p class="mt-2 text-[11px] md:text-xs text-gray-400">
-              Espacio comunitario de lectura, cultura y tecnología para toda la comunidad.
-            </p>
-          </div>
-
-          <!-- Redes sociales y WhatsApp -->
-          <div class="flex flex-col items-center md:items-end gap-3">
-            <div class="flex items-center gap-4 text-sm text-gray-600">
-              <a
-                href="https://www.instagram.com/bibliotecaferre/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-black transition-colors"
-              >
-                📷 Instagram
-              </a>
-              <a
-                href="https://www.facebook.com/people/Biblioteca-Ferre/61557865380803/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-black transition-colors"
-              >
-                👍 Facebook
-              </a>
-            </div>
-
-            <a
-              href="https://wa.me/542353498294?text=Hola%20%F0%9F%91%8B%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%20la%20Biblioteca%20Jos%C3%A9%20Hern%C3%A1ndez."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white text-xs md:text-sm font-medium shadow-sm transition-colors"
-            >
-              <span>💬</span>
-              <span>Escribir por WhatsApp</span>
-            </a>
-          </div>
+        <!-- Iconos de redes -->
+        <div class="flex items-center justify-center gap-5 text-xl text-black">
+          <a
+            href="https://www.instagram.com/bibliotecaferre/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-8 h-8 rounded-md border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="sr-only">Instagram</span>
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/people/Biblioteca-Ferre/61557865380803/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-8 h-8 rounded-md border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="sr-only">Facebook</span>
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="https://wa.me/542353498294?text=Hola%20%F0%9F%91%8B%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%20la%20Biblioteca%20Jos%C3%A9%20Hern%C3%A1ndez."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-8 h-8 rounded-md border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="sr-only">WhatsApp</span>
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
         </div>
+
+        <!-- Copyright -->
+        <p class="text-[10px] md:text-xs font-sans text-black">
+          &copy; <span id="year"></span> Biblioteca Popular José Hernández · Ferré
+        </p>
       </div>
     </footer>
   </div>
