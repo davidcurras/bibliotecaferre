@@ -331,6 +331,104 @@
       transform: translateY(-1px);
     }
 
+    /* SECCIÓN FOTOS / CARRUSEL */
+    #fotos {
+      background-color: var(--bg-card);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      padding: 18px 18px 22px;
+      margin-top: 14px;
+      display: none; /* sólo se muestra post-countdown */
+    }
+
+    .photos-header {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .photos-header-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .photos-header-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .photos-carousel-wrapper {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .photos-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 12px;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .photos-carousel::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .photos-carousel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .photos-carousel::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.12);
+      border-radius: 999px;
+    }
+
+    .photo-item {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: #e5e3de;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      backdrop-filter: blur(4px);
+    }
+
+    #carousel-prev {
+      left: 8px;
+    }
+
+    #carousel-next {
+      right: 8px;
+    }
+
     @media (max-width: 480px) {
       .app {
         padding: 12px 12px 20px;
@@ -346,6 +444,10 @@
 
       .card-subtitle {
         font-size: 14px;
+      }
+
+      .photos-header-title {
+        font-size: 16px;
       }
     }
   </style>
@@ -457,8 +559,124 @@
       </div>
     </main>
 
-    <!-- Ancla vacía (placeholder) para futuro carrusel / galería -->
-    <section id="fotos"></section>
+    <!-- SECCIÓN FOTOS / CARRUSEL (visible sólo post-countdown) -->
+    <section
+      id="fotos"
+      aria-label="Galería de fotos antiguas de la plaza de Ferré"
+    >
+      <header class="photos-header">
+        <h2 class="photos-header-title">FOTOS</h2>
+        <p class="photos-header-subtitle">
+          Una galería de imágenes históricas de la plaza.
+        </p>
+      </header>
+
+      <div class="photos-carousel-wrapper">
+        <button
+          id="carousel-prev"
+          class="carousel-btn"
+          type="button"
+          aria-label="Foto anterior"
+        >
+          ‹
+        </button>
+
+        <div class="photos-carousel" id="photos-carousel">
+          <!-- Entre 10 y 30 fotos, se pueden borrar las que no se usen -->
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000001.jpg" alt="Foto antigua 1 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000002.jpg" alt="Foto antigua 2 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000003.jpg" alt="Foto antigua 3 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000004.jpg" alt="Foto antigua 4 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000005.jpg" alt="Foto antigua 5 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000006.jpg" alt="Foto antigua 6 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000007.jpg" alt="Foto antigua 7 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000008.jpg" alt="Foto antigua 8 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/0000009.jpg" alt="Foto antigua 9 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/00000010.jpg" alt="Foto antigua 10 de la plaza de Ferré" loading="lazy" />
+          </figure>
+          <figure class="photo-item">
+            <img src="./assets/pictures/00000011.jpg" alt="Foto antigua 11 de la plaza de Ferré" loading="lazy" />
+          </figure>
+        </div>
+
+        <button
+          id="carousel-next"
+          class="carousel-btn"
+          type="button"
+          aria-label="Foto siguiente"
+        >
+          ›
+        </button>
+      </div>
+    </section>
+
+    <!-- FOOTER unificado con la página de la plaza -->
+    <footer class="pb-8 px-6 bg-[#faf9f7] mt-6 rounded-2xl">
+      <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 text-center">
+        <!-- Logo centrado -->
+        <img
+          src="./assets/logo-bjh.png"
+          alt="Logo de la Biblioteca José Hernández de Ferré"
+          class="h-10 w-auto"
+          loading="lazy"
+        />
+
+        <!-- Iconos de redes -->
+        <div class="flex items-center justify-center gap-5 text-xl text-black">
+          <a
+            href="https://www.instagram.com/bibliotecaferre/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-8 h-8 rounded-md border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="sr-only">Instagram</span>
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/people/Biblioteca-Ferre/61557865380803/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-8 h-8 rounded-md border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="sr-only">Facebook</span>
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a
+            href="https://wa.me/542353498294?text=Hola%20%F0%9F%91%8B%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%20la%20Biblioteca%20Jos%C3%A9%20Hern%C3%A1ndez."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-8 h-8 rounded-md border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="sr-only">WhatsApp</span>
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-[10px] md:text-xs font-sans text-black">
+          &copy; <span id="year"></span> Biblioteca Popular José Hernández · Ferré
+        </p>
+      </div>
+    </footer>
   </div>
 
   <script>
@@ -468,6 +686,7 @@
 
       var preEvent = document.getElementById('pre-event');
       var mainContent = document.getElementById('main-content');
+      var fotosSection = document.getElementById('fotos');
 
       var daysEl = document.getElementById('cd-days');
       var hoursEl = document.getElementById('cd-hours');
@@ -484,6 +703,7 @@
         if (diff <= 0) {
           if (preEvent) preEvent.style.display = 'none';
           if (mainContent) mainContent.style.display = 'flex';
+          if (fotosSection) fotosSection.style.display = 'block';
 
           if (intervalId) {
             clearInterval(intervalId);
@@ -495,6 +715,7 @@
         // Mientras el evento no haya ocurrido, mostrar sólo el countdown
         if (preEvent) preEvent.style.display = 'block';
         if (mainContent) mainContent.style.display = 'none';
+        if (fotosSection) fotosSection.style.display = 'none';
 
         var totalSeconds = Math.floor(diff / 1000);
 
@@ -513,6 +734,52 @@
       updateCountdown();
       // Actualizar cada segundo
       intervalId = setInterval(updateCountdown, 1000);
+    })();
+
+    // Lógica simple de carrusel mobile (prev/next)
+    (function () {
+      var carousel = document.getElementById('photos-carousel');
+      if (!carousel) return;
+
+      var items = carousel.querySelectorAll('.photo-item');
+      if (!items.length) return;
+
+      var currentIndex = 0;
+
+      function goTo(index) {
+        index = (index + items.length) % items.length;
+        currentIndex = index;
+        var target = items[index];
+        if (target) {
+          carousel.scrollTo({
+            left: target.offsetLeft,
+            behavior: 'smooth',
+          });
+        }
+      }
+
+      var prevBtn = document.getElementById('carousel-prev');
+      var nextBtn = document.getElementById('carousel-next');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          goTo(currentIndex - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          goTo(currentIndex + 1);
+        });
+      }
+    })();
+
+    // Año dinámico en el footer
+    (function () {
+      var yearSpan = document.getElementById('year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
     })();
   </script>
 </body>
