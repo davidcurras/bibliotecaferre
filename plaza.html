@@ -119,6 +119,11 @@
       min-height: 100vh;
     }
 
+    /* Evitar scroll cuando hay una imagen expandida */
+    body.no-scroll {
+      overflow: hidden;
+    }
+
     /* Utilidad para embeds 16:9, por si se agregan videos más adelante */
     .embed-16by9 {
       position: relative;
@@ -402,6 +407,26 @@
       object-fit: cover;
     }
 
+    /* Estado expandido de la foto (overlay a pantalla completa) */
+    .photo-item.expanded {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      flex: none;
+    }
+
+    .photo-item.expanded img {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      border-radius: 16px;
+    }
+
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -481,7 +506,7 @@
       <header class="pre-event-header">
         <h1>LA PLAZA</h1>
         <p>
-          El <strong>7 de diciembre de 2025 a las 21:00&nbsp;hs (hora Argentina)</strong>
+          El <strong>7 de diciembre de 2025 a las 21:00&nbsp;hs</strong>
           se inaugura la nueva plaza de Ferré.
         </p>
       </header>
@@ -630,7 +655,7 @@
     </section>
 
     <!-- FOOTER unificado con la página de la plaza -->
-    <footer class="pb-8 px-6 bg-[#faf9f7] mt-6 rounded-2xl">
+    <footer class="pb-8 px-6 bg-transparent mt-6 rounded-2xl">
       <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 text-center">
         <!-- Logo centrado -->
         <img
@@ -736,7 +761,7 @@
       intervalId = setInterval(updateCountdown, 1000);
     })();
 
-    // Lógica simple de carrusel mobile (prev/next)
+    // Lógica de carrusel mobile (prev/next) + zoom al tocar la imagen
     (function () {
       var carousel = document.getElementById('photos-carousel');
       if (!carousel) return;
@@ -745,6 +770,8 @@
       if (!items.length) return;
 
       var currentIndex = 0;
+      var expandedItem = null;
+      var body = document.body;
 
       function goTo(index) {
         index = (index + items.length) % items.length;
@@ -763,15 +790,46 @@
 
       if (prevBtn) {
         prevBtn.addEventListener('click', function () {
+          // si hay una imagen expandida, ignoramos navegación
+          if (expandedItem) return;
           goTo(currentIndex - 1);
         });
       }
 
       if (nextBtn) {
         nextBtn.addEventListener('click', function () {
+          // si hay una imagen expandida, ignoramos navegación
+          if (expandedItem) return;
           goTo(currentIndex + 1);
         });
       }
+
+      // Tap/click en la imagen para expandir/contraer
+      carousel.addEventListener('click', function (e) {
+        var img = e.target.closest('.photo-item img');
+        if (!img) return;
+
+        var item = img.closest('.photo-item');
+        if (!item) return;
+
+        // Si ya está expandida, la cerramos
+        if (item.classList.contains('expanded')) {
+          item.classList.remove('expanded');
+          body.classList.remove('no-scroll');
+          expandedItem = null;
+          return;
+        }
+
+        // Cerrar cualquier otra que estuviera abierta
+        if (expandedItem) {
+          expandedItem.classList.remove('expanded');
+        }
+
+        // Expandir la imagen tocada
+        item.classList.add('expanded');
+        body.classList.add('no-scroll');
+        expandedItem = item;
+      });
     })();
 
     // Año dinámico en el footer
