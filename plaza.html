@@ -454,6 +454,39 @@
       right: 8px;
     }
 
+    /* SECCIÓN HISTORIA */
+    #historia {
+      background-color: var(--bg-card);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      padding: 18px 18px 22px;
+      margin-top: 14px;
+      display: none; /* sólo se muestra post-countdown */
+    }
+
+    .history-header {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .history-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .history-body p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .history-body p + p {
+      margin-top: 10px;
+    }
+
     @media (max-width: 480px) {
       .app {
         padding: 12px 12px 20px;
@@ -471,7 +504,8 @@
         font-size: 14px;
       }
 
-      .photos-header-title {
+      .photos-header-title,
+      .history-title {
         font-size: 16px;
       }
     }
@@ -654,6 +688,73 @@
       </div>
     </section>
 
+    <!-- SECCIÓN HISTORIA (visible sólo post-countdown) -->
+    <section
+      id="historia"
+      aria-label="Historia de la plaza Don Bosco de Ferré"
+    >
+      <header class="history-header">
+        <h2 class="history-title">HISTORIA</h2>
+      </header>
+
+      <div class="history-body">
+        <p>
+          El 18 de noviembre de 1909 se bautizó la estación de Ferré. Muchos años después,
+          el 25 de noviembre de 1970, se logró finalmente el nombramiento oficial de pueblo.
+        </p>
+        <p>
+          Desde sus inicios, la localidad fue creciendo de manera desprolija, con manzanas
+          irregulares y de distintas medidas. Por eso Ferré no cuenta con una plaza central
+          rodeada por las instituciones y edificios emblemáticos —Delegación Municipal,
+          comisaría y otros organismos— como sucede en muchos pueblos y ciudades.
+        </p>
+        <p>
+          A comienzos de la década de 1970 se empezó a buscar el lugar adecuado para construir
+          una plaza. Gracias a la donación de una parte del terreno de la Capilla María
+          Auxiliadora, junto con otro triángulo de iguales dimensiones donado por la sucesión
+          de la familia de José Santos Artoni, y al trazado de la avenida Don Bosco,
+          se logró conformar el cuadrado que hoy ocupa la plaza. En aquel entonces era una
+          zona de borde del pueblo y, con el tiempo, se transformó en una ubicación central
+          dentro de la localidad.
+        </p>
+        <p>
+          En 1984 se formó una comisión pro plaza integrada por vecinos y frentistas,
+          que trabajó en conjunto con el Centro de Ex Alumnos Don Bosco de la Escuela
+          Agrotécnica Salesiana. En ese momento, los presidentes eran Jorge Omar Franco
+          y Santiago Lázaro Rastelli —este último, actual intendente de nuestro distrito
+          de General Arenales—. Gracias a ese esfuerzo compartido se logró inaugurar en 1986
+          un hermoso espacio, bien diseñado y parquizado, que se convirtió en motivo de orgullo
+          para Ferré.
+        </p>
+        <p>
+          Desde entonces, niños, jóvenes y adultos disfrutaron de la plaza y de sus espacios
+          de encuentro. Con el paso del tiempo, aunque siempre se mantuvo en buen estado,
+          comenzó a necesitar una refacción profunda o una renovación completa. Así fue como
+          las autoridades de gobierno de General Arenales —la intendenta Érica Revilla, el
+          delegado municipal Javier Capaldi y todo el equipo de trabajo— decidieron construir
+          una nueva plaza, tal como Ferré lo merece.
+        </p>
+        <p>
+          En el marco de los festejos por los 116 años del nacimiento de Ferré, celebrados
+          el 18 de noviembre, este <strong>7 de diciembre de 2025</strong> llegó el día de la
+          reinauguración de la <strong>Plaza Don Bosco</strong> de Ferré.
+        </p>
+        <p>
+          Esta obra también es un recuerdo y homenaje a tantos pioneros que trabajaron
+          por el pueblo y hoy ya no están, pero que siguen acompañando y guiando desde una
+          estrella.
+        </p>
+        <p>
+          <em>“Nueva plaza, nueva obra, nueva alegría”</em>: un lugar para que todos podamos
+          disfrutar, cuidar y mantener impecable, honrando la historia compartida.
+        </p>
+        <p>
+          Gracias, Ferré, pueblo siempre agradecido por todo lo logrado con tanto amor
+          y generosidad.
+        </p>
+      </div>
+    </section>
+
     <!-- FOOTER unificado con la página de la plaza -->
     <footer class="pb-8 px-6 bg-transparent mt-6 rounded-2xl">
       <div class="max-w-5xl mx-auto flex flex-col items-center gap-4 text-center">
@@ -712,6 +813,7 @@
       var preEvent = document.getElementById('pre-event');
       var mainContent = document.getElementById('main-content');
       var fotosSection = document.getElementById('fotos');
+      var historiaSection = document.getElementById('historia');
 
       var daysEl = document.getElementById('cd-days');
       var hoursEl = document.getElementById('cd-hours');
@@ -729,6 +831,7 @@
           if (preEvent) preEvent.style.display = 'none';
           if (mainContent) mainContent.style.display = 'flex';
           if (fotosSection) fotosSection.style.display = 'block';
+          if (historiaSection) historiaSection.style.display = 'block';
 
           if (intervalId) {
             clearInterval(intervalId);
@@ -741,6 +844,7 @@
         if (preEvent) preEvent.style.display = 'block';
         if (mainContent) mainContent.style.display = 'none';
         if (fotosSection) fotosSection.style.display = 'none';
+        if (historiaSection) historiaSection.style.display = 'none';
 
         var totalSeconds = Math.floor(diff / 1000);
 
