@@ -124,20 +124,6 @@
       overflow: hidden;
     }
 
-    /* Utilidad para embeds 16:9, por si se agregan videos más adelante */
-    .embed-16by9 {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-    }
-    .embed-16by9 iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
     .app {
       width: 100%;
       max-width: 430px;
@@ -156,6 +142,8 @@
       align-items: flex-start;
       justify-content: space-between;
       margin-bottom: 8px;
+      position: relative;
+      z-index: 30;
     }
 
     .menu-btn {
@@ -168,6 +156,8 @@
       padding: 4px 0;
       background: transparent;
       border: none;
+      position: relative;
+      z-index: 40;
     }
 
     .menu-btn span {
@@ -175,6 +165,23 @@
       width: 100%;
       border-radius: 999px;
       background-color: #1f2933;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    /* Ocultar elementos del menú antes de tiempo */
+    .menu-hidden {
+      display: none !important;
+    }
+
+    /* Estado "X" del botón de menú */
+    .menu-btn.is-open span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+    }
+    .menu-btn.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.is-open span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
     }
 
     .logo-bjh {
@@ -191,6 +198,66 @@
       height: 32px;
       object-fit: contain;
       display: block;
+    }
+
+    /* MENÚ MOBILE */
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      z-index: 35;
+    }
+
+    .menu-backdrop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-panel {
+      position: absolute;
+      top: 44px;
+      right: 0;
+      background-color: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+      padding: 10px 14px;
+      min-width: 180px;
+      display: none;
+      z-index: 50;
+    }
+
+    .menu-panel.open {
+      display: block;
+    }
+
+    .menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .menu-item {
+      text-align: left;
+    }
+
+    .menu-link {
+      display: block;
+      width: 100%;
+      padding: 8px 6px;
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--text-main);
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .menu-link:hover {
+      background-color: #f3f1e8;
     }
 
     /* PRE-EVENTO: COUNTDOWN */
@@ -398,6 +465,7 @@
       border-radius: 16px;
       overflow: hidden;
       background-color: #e5e3de;
+      cursor: zoom-in;
     }
 
     .photo-item img {
@@ -418,6 +486,7 @@
       justify-content: center;
       padding: 16px;
       flex: none;
+      cursor: zoom-out;
     }
 
     .photo-item.expanded img {
@@ -444,6 +513,7 @@
       font-size: 18px;
       line-height: 1;
       backdrop-filter: blur(4px);
+      z-index: 20;
     }
 
     #carousel-prev {
@@ -487,6 +557,14 @@
       margin-top: 10px;
     }
 
+    .history-author {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: right;
+      font-style: italic;
+    }
+
     @media (max-width: 480px) {
       .app {
         padding: 12px 12px 20px;
@@ -513,13 +591,18 @@
 </head>
 <body>
   <div class="app">
+    <!-- BACKDROP DEL MENÚ -->
+    <div id="menu-backdrop" class="menu-backdrop"></div>
+
     <!-- HEADER -->
     <header class="header">
-      <!-- Botón menú -->
+      <!-- Botón menú (oculto hasta que termine el countdown) -->
       <button
-        class="menu-btn"
+        class="menu-btn menu-hidden"
         type="button"
         aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <span></span>
         <span></span>
@@ -530,6 +613,25 @@
       <div class="logo-bjh">
         <img src="./assets/logo-bjh.png" alt="Logo Biblioteca José Hernández" />
       </div>
+
+      <!-- MENÚ MOBILE -->
+      <nav
+        id="mobile-menu"
+        class="menu-panel"
+        aria-label="Navegación principal"
+      >
+        <ul class="menu-list">
+          <li class="menu-item">
+            <a href="#main-content" class="menu-link">Plaza</a>
+          </li>
+          <li class="menu-item">
+            <a href="#fotos" class="menu-link">Fotos</a>
+          </li>
+          <li class="menu-item">
+            <a href="#historia" class="menu-link">Historia</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- PRE-EVENTO: COUNTDOWN -->
@@ -752,6 +854,9 @@
           Gracias, Ferré, pueblo siempre agradecido por todo lo logrado con tanto amor
           y generosidad.
         </p>
+        <p class="history-author">
+          — Daniel Scropanich
+        </p>
       </div>
     </section>
 
@@ -814,6 +919,7 @@
       var mainContent = document.getElementById('main-content');
       var fotosSection = document.getElementById('fotos');
       var historiaSection = document.getElementById('historia');
+      var menuBtn = document.querySelector('.menu-btn');
 
       var daysEl = document.getElementById('cd-days');
       var hoursEl = document.getElementById('cd-hours');
@@ -833,6 +939,11 @@
           if (fotosSection) fotosSection.style.display = 'block';
           if (historiaSection) historiaSection.style.display = 'block';
 
+          // Mostrar el botón de menú una vez finalizado el countdown
+          if (menuBtn) {
+            menuBtn.classList.remove('menu-hidden');
+          }
+
           if (intervalId) {
             clearInterval(intervalId);
           }
@@ -845,6 +956,11 @@
         if (mainContent) mainContent.style.display = 'none';
         if (fotosSection) fotosSection.style.display = 'none';
         if (historiaSection) historiaSection.style.display = 'none';
+
+        // Asegurar que el menú permanezca oculto antes del evento
+        if (menuBtn) {
+          menuBtn.classList.add('menu-hidden');
+        }
 
         var totalSeconds = Math.floor(diff / 1000);
 
@@ -894,7 +1010,6 @@
 
       if (prevBtn) {
         prevBtn.addEventListener('click', function () {
-          // si hay una imagen expandida, ignoramos navegación
           if (expandedItem) return;
           goTo(currentIndex - 1);
         });
@@ -902,7 +1017,6 @@
 
       if (nextBtn) {
         nextBtn.addEventListener('click', function () {
-          // si hay una imagen expandida, ignoramos navegación
           if (expandedItem) return;
           goTo(currentIndex + 1);
         });
@@ -933,6 +1047,60 @@
         item.classList.add('expanded');
         body.classList.add('no-scroll');
         expandedItem = item;
+      });
+    })();
+
+    // Menú móvil: abrir/cerrar, cerrar al hacer click en enlaces o fondo
+    // y hacer scroll suave hasta la sección correspondiente
+    (function () {
+      var menuBtn = document.querySelector('.menu-btn');
+      var menuPanel = document.getElementById('mobile-menu');
+      var backdrop = document.getElementById('menu-backdrop');
+      var links = document.querySelectorAll('.menu-link');
+
+      if (!menuBtn || !menuPanel || !backdrop) return;
+
+      var isOpen = false;
+
+      function setMenu(open) {
+        isOpen = open;
+
+        if (open) {
+          menuPanel.classList.add('open');
+          backdrop.classList.add('visible');
+          menuBtn.classList.add('is-open');
+          menuBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          menuPanel.classList.remove('open');
+          backdrop.classList.remove('visible');
+          menuBtn.classList.remove('is-open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      menuBtn.addEventListener('click', function () {
+        setMenu(!isOpen);
+      });
+
+      backdrop.addEventListener('click', function () {
+        setMenu(false);
+      });
+
+      links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var href = link.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            var target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+          setMenu(false);
+        });
       });
     })();
 
